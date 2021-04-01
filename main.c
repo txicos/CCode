@@ -193,6 +193,35 @@ void clearNodes(){
     current = NULL;
 }
 
+void sortNodes()
+{
+    int tempData;
+    gNode lcurrent,index;
+    if(head == NULL)
+    {
+        return;
+    }
+    else
+    {
+        lcurrent = head;
+        while(lcurrent->next != NULL)
+        {
+            index = lcurrent->next;
+            while(index != NULL)
+            {
+                if(lcurrent->data > index->data)
+                {
+                    tempData = lcurrent->data;
+                    lcurrent->data = index->data;
+                    index->data = tempData;
+                }
+                index = index->next;
+            }
+            lcurrent = lcurrent->next;
+        }
+    }
+}
+
 
 // use to debug
 //void print_entry(char *entry) {
@@ -268,6 +297,11 @@ int main(int argc, char *argv[]) {
         else if(strncmp(str, "clear", 4) == 0)
         {
             clearNodes();
+        }
+        else if(strncmp(str, "sort", 4) == 0)
+        {
+            sortNodes();
+            printData();
         }
         else
         {
